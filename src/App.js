@@ -1,6 +1,7 @@
 import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme } from './utils/Themes.js';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/index.js';
 import Hero from './components/HeroSection/index.js';
 import Skills from './components/Skills/index.js';
@@ -8,6 +9,7 @@ import Education from './components/Education/index.js';
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
 import Experience from './components/Experience/index.js';
+import Projects from './components/Projects/index.js';
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -31,6 +33,9 @@ const Wrapper = styled.div`
 `;
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [openModal, setOpenModal] = useState({ state: false, project: null });
+  console.log(openModal);
   return (
     <ThemeProvider theme={darkTheme}>
       <Router>
@@ -40,6 +45,7 @@ function App() {
           <Wrapper>
             <Skills />
             <Experience />
+            <Projects openModal={openModal} setOpenModal={setOpenModal} />
             <Education />
           </Wrapper>
         </Body>
