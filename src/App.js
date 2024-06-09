@@ -10,6 +10,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
 import Experience from './components/Experience/index.js';
 import Projects from './components/Projects/index.js';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import ProjectDetails from './components/ProjectDetails';
+import About from "./components/About";
+
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -45,9 +50,16 @@ function App() {
           <Wrapper>
             <Skills />
             <Experience />
-            <Projects openModal={openModal} setOpenModal={setOpenModal} />
-            <Education />
           </Wrapper>
+          <Projects openModal={openModal} setOpenModal={setOpenModal} />
+          <Wrapper>
+            <Education />
+            <Contact />
+          </Wrapper>
+          <Footer />
+          {openModal.state && (
+            <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
+          )}
         </Body>
       </Router>
     </ThemeProvider>
